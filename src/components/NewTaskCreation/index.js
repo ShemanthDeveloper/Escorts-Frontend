@@ -1,43 +1,44 @@
 import './index.css'
 
-const NewTaskCreation=()=>{
+/*const NewTaskCreation=()=>{
     return(
         <div className="newTask-main-container">
             <h1 className='newTask-heading'>New Task Creation</h1>
             <form className='newTask-form-continer '>
                  <div className='newTask-label-container'>
-                    <label className='label'>D-CODE</label>
-                    <input type="text"/>
+                    <label className='label'>CODE</label>
+                    <input className='newTask-input' type="text"/>
                  </div>
                  <div className='newTask-label-container'>
-                    <label>Name</label>
-                    <input type="text"/>
+                    <label className='label'>Name</label>
+                    <input className='newTask-input' type="text"/>
                  </div>
                  <div className='newTask-label-container'>
-                    <label>Description</label>
-                    <input type="text"/>
+                    <label className='label'>Description</label>
+                    <input className='newTask-input' type="text"/>
                  </div>
                  <div className='newTask-check-box-container'>
                  <div>
-                 <label>3D</label>
-                 <input type="checkbox"/>
+                 <label className='label'>3D</label>
+                 <input className='newTask-check-box' type="checkbox"/>
                  </div>
-                 <div>
-                 <label>2D</label>
-                 <input type="checkbox"/>
+                 <div className='newTask-2d'>
+                 <label className='label'>2D</label>
+                 <input className='newTask-check-box' type="checkbox"/>
                  </div>
                  </div>
                  <div className='newTask-select-container'>
-                 <label for="options">Type Of Part:</label>
-    <select id="options" name="options">
+                 <label className='label' for="options">Type Of Part:</label>
+    <select className='newTask-select-field'  id="options" name="options">
     <option value="option4">REF</option>
         <option value="option1">BOP</option>
         <option value="option2">Phantom</option>
     </select>
                  </div>
                  <div className='newTask-check-box-container'>
-                    <label>DR/DRR</label>
-                    <input type="checkbox"/>
+                    <label className='label'>DR/DRR</label>
+                    <input className='newTask-check-box' type="checkbox"/>
+                    <span class='checkmark'></span>
                  </div>
                  
                  
@@ -47,24 +48,24 @@ const NewTaskCreation=()=>{
                  
                  
                  <div className='newTask-select-container'>
-                 <label for="options">Processs Type:</label>
-    <select id="options" name="options">
-    <option value="option4">WORKFLOW</option>
-        <option value="option1">ECO</option>
-        <option value="option2">DR</option>
-        <option value="option3">DRR</option>
-    </select>
+                 <label className='label' for="options">Processs Type:</label>
+                  <select id="options" className='newTask-select-field' name="options">
+                 <option value="option4">WORKFLOW</option>
+                 <option value="option1">ECO</option>
+                <option value="option2">DR</option>
+                 <option value="option3">DRR</option>
+                  </select>
                  </div>
                  <div className='newTask-label-container'>
-                    <label>ECO</label>
-                    <input type='text'/>
+                    <label className='label'>ECO</label>
+                    <input className='newTask-input' type='text'/>
                  </div>
                  <div className='newTask-label-container'>
-                    <label>Status</label>
-                    <input type='text'/>
+                    <label className='label'>Status</label>
+                    <input className='newTask-input' type='text'/>
                  </div>
                  <div className='newTask-submitButton'>
-                    <submit>Save</submit>
+                    <submit className="newTask-sButton">Save</submit>
                  </div>
             </form>
         </div>
@@ -73,4 +74,233 @@ const NewTaskCreation=()=>{
 }
 
 export default NewTaskCreation
+
+/* git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ShemanthDeveloper/Escorts-Frontend.git
+git push -u origin main*/
+
+
+import React, { useEffect, useState } from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css'; // Import styles
+import './index.css';
+
+const PopupExample = ({ open, close }) => (
+   <Popup open={open} onClose={close} modal>
+       <div  className='newTask-error-container' >
+           <h2 className='newTask-error-heading'>Error</h2>
+           <p className='newTask-error-message'>Please fill Atleast Code & Name</p>
+           <button className='newTask-error-button' onClick={close}>Close</button>
+       </div>
+   </Popup>
+);
+
+const NewTaskCreation = () => {
+    const [code, setCode] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [is3D, setIs3D] = useState(false);
+    const [isDR, setIsDR] = useState(false);
+    const [is2D, setIs2D] = useState(false);
+    const [partType, setPartType] = useState('REF');
+    const [processType, setProcessType] = useState('NA');
+    const [eco, setEco] = useState('');
+    const [status, setStatus] = useState('');
+    const [isDisable,setIsDisable]=useState(true)
+    const [isDisable2,setIsDisable2]=useState(true)
+    const [isDisable3,setIsDisable3]=useState(true)
+    const [isDisableDR,setIsDisableDR]=useState(true)
+    const [popupOpen, setPopupOpen] = useState(false);
+
+    
+    
+    const handleSubmit = (e) => {
+      e.preventDefault(); 
+      if(code===""|| name===""){
+         setPopupOpen(true); 
+         console.log("error")
+      }else{
+         e.preventDefault(); 
+         console.log({
+             code,
+             name,
+             description,
+             is3D,
+             isDR,
+             is2D,
+             partType,
+             processType,
+             eco,
+             status
+         });}
+    };
+
+   useEffect(()=>{
+      if(partType==="BOP"){
+         if(is2D&&is3D&&isDR){
+            setIsDisable(false)
+            setIsDisable2(true)
+            setIsDisable3(false)
+            setProcessType("NA")
+
+         }else if(is2D&& is3D){
+            setIsDisable2(false)
+            setIsDisable3(true)
+            setIsDisable(true)
+            setProcessType("NA")
+         }else{
+            setIsDisable(true)
+            setIsDisable2(true)
+            setIsDisable3(true)
+            setProcessType("NA")
+         }
+      }
+      if(partType==="REF"){
+         if(is2D&&is3D){
+            setIsDisable3(false)
+            setIsDisable(true)
+            setIsDisable2(true)
+            setProcessType("NA")
+         }else{
+            setIsDisable3(true)
+            setProcessType("NA")
+         }
+      }
+
+      if(partType==="PHANTOM"){
+         if(is2D&is3D){
+            setIsDisable2(true)
+            setIsDisable3(false)
+            setIsDisable(false)
+            setProcessType("NA")
+         }
+      }
+      if(partType==="BOP"){
+         setIsDisableDR(false)
+      }
+   },[is2D,is3D,isDR,partType])
+
+    return (
+        <div className="newTask-main-container">
+            <h1 className='newTask-heading'>New Task Creation</h1>
+            <form className='newTask-form-continer' onSubmit={handleSubmit}>
+                <div className='newTask-label-container'>
+                    <label className='label'>CODE</label>
+                    <input 
+                        className='newTask-input' 
+                        type="text" 
+                        value={code} 
+                        onChange={(e) => setCode(e.target.value.toUpperCase())} 
+                    />
+                </div>
+                <div className='newTask-label-container'>
+                    <label className='label'>Name</label>
+                    <input 
+                        className='newTask-input' 
+                        type="text" 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value.toUpperCase())} 
+                    />
+                </div>
+                <div className='newTask-label-container'>
+                    <label className='label'>Description</label>
+                    <input 
+                        className='newTask-input' 
+                        type="text" 
+                        value={description} 
+                        onChange={(e) => setDescription(e.target.value.toUpperCase())} 
+                    />
+                </div>
+                <div className='newTask-check-box-container'>
+                    <div>
+                        <label className='label'>3D</label>
+                        <input 
+                            className='newTask-check-box' 
+                            type="checkbox" 
+                            checked={is3D} 
+                            onChange={() => setIs3D(!is3D)} 
+                        />
+                    </div>
+                    <div className='newTask-2d'>
+                        <label className='label'>2D</label>
+                        <input 
+                            className='newTask-check-box' 
+                            type="checkbox" 
+                            checked={is2D} 
+                            onChange={() => setIs2D(!is2D)} 
+                        />
+                    </div>
+                </div>
+                <div className='newTask-select-container'>
+                    <label className='label' htmlFor="partType">Type Of Part:</label>
+                    <select 
+                        className='newTask-select-field' 
+                        id="partType" 
+                        name="partType" 
+                        value={partType} 
+                        onChange={(e) => setPartType(e.target.value)}
+                    >
+                        <option value="REF">REF</option>
+                        <option value="BOP">BOP</option>
+                        <option value="PHANTOM">Phantom</option>
+                    </select>
+                </div>
+                <div  className='newTask-check-box-container'>
+                    <label className='label'>DR/DRR</label>
+                    <input 
+                        className='newTask-check-box' 
+                        type="checkbox" 
+                        checked={isDR} 
+                        onChange={() => setIsDR(!isDR)} 
+                        disabled={isDisableDR}
+                    />
+                    <span className='checkmark'></span>
+                </div>
+                <div className='newTask-select-container'>
+                    <label className='label' htmlFor="processType">Process Type:</label>
+                    <select 
+                        id="processType" 
+                        className='newTask-select-field' 
+                        name="processType" 
+                        value={processType} 
+                        onChange={(e) => setProcessType(e.target.value)}
+                    >
+                        <option disabled={isDisable3} value="WORKFLOW">WORKFLOW</option>
+                        <option disabled={isDisable} value="ECO">ECO</option>
+                        <option disabled={isDisable2} value="DR">DR</option>
+                        <option disabled={isDisable2} value="DRR">DRR</option>
+                        <option value="NA">NA</option>
+                    </select>
+                </div>
+                <div className='newTask-label-container'>
+                    <label className='label'>ECO</label>
+                    <input 
+                        className='newTask-input' 
+                        type='text' 
+                        value={eco} 
+                        onChange={(e) => setEco(e.target.value.toUpperCase())} 
+                    />
+                </div>
+                <div className='newTask-label-container'>
+                    <label className='label'>Status</label>
+                    <input 
+                        className='newTask-input' 
+                        type='text' 
+                        value={status} 
+                        onChange={(e) => setStatus(e.target.value.toUpperCase())} 
+                    />
+                </div>
+                <div className='newTask-submitButton'>
+                    <button type="submit" className="newTask-sButton">Save</button>
+                </div>
+            </form>
+            <PopupExample open={popupOpen} close={() => setPopupOpen(false)} />
+        </div>
+    );
+};
+
+export default NewTaskCreation;
 
