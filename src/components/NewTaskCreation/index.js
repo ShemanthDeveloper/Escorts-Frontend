@@ -85,7 +85,8 @@ git push -u origin main*/
 
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css'; // Import styles
+import NavBar from '../NavBar'
+import 'reactjs-popup/dist/index.css'; 
 import './index.css';
 
 const PopupExample = ({ open, close }) => (
@@ -100,6 +101,7 @@ const PopupExample = ({ open, close }) => (
 
 const NewTaskCreation = () => {
     const [code, setCode] = useState('');
+    const [rev, setRev] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [is3D, setIs3D] = useState(false);
@@ -127,6 +129,7 @@ const NewTaskCreation = () => {
          console.log({
              code,
              name,
+             rev,
              description,
              is3D,
              isDR,
@@ -176,31 +179,50 @@ const NewTaskCreation = () => {
             setIsDisable3(false)
             setIsDisable(false)
             setProcessType("NA")
+         }else{
+            setIsDisable(true)
+            setIsDisable2(true)
+            setIsDisable3(true)
+            setProcessType("NA")
          }
       }
       if(partType==="BOP"){
          setIsDisableDR(false)
+      }else{
+         setIsDisableDR(true)
       }
    },[is2D,is3D,isDR,partType])
 
     return (
+   
+      
         <div className="newTask-main-container">
+         <NavBar/>
+         <div className='newTask-container-bg'>
             <h1 className='newTask-heading'>New Task Creation</h1>
             <form className='newTask-form-continer' onSubmit={handleSubmit}>
                 <div className='newTask-label-container'>
                     <label className='label'>CODE</label>
+                    <div className='newTask-d-revision-container'>
                     <input 
                         className='newTask-input' 
                         type="text" 
+                        placeholder='D/TEM Code'
                         value={code} 
                         onChange={(e) => setCode(e.target.value.toUpperCase())} 
+                        
                     />
+                    <input className='newTask-rev newTask-input' placeholder='Rev' type="text"
+                    value={rev} 
+                    onChange={(e) => setRev(e.target.value.toUpperCase())} />
+                    </div>
                 </div>
                 <div className='newTask-label-container'>
                     <label className='label'>Name</label>
                     <input 
                         className='newTask-input' 
                         type="text" 
+                        placeholder='Part Name'
                         value={name} 
                         onChange={(e) => setName(e.target.value.toUpperCase())} 
                     />
@@ -211,6 +233,7 @@ const NewTaskCreation = () => {
                         className='newTask-input' 
                         type="text" 
                         value={description} 
+                        placeholder='Important Changes'
                         onChange={(e) => setDescription(e.target.value.toUpperCase())} 
                     />
                 </div>
@@ -278,9 +301,11 @@ const NewTaskCreation = () => {
                 <div className='newTask-label-container'>
                     <label className='label'>ECO</label>
                     <input 
+                    disabled={isDisable}
                         className='newTask-input' 
                         type='text' 
                         value={eco} 
+                        placeholder='EDN/ECP/ECA'
                         onChange={(e) => setEco(e.target.value.toUpperCase())} 
                     />
                 </div>
@@ -290,6 +315,7 @@ const NewTaskCreation = () => {
                         className='newTask-input' 
                         type='text' 
                         value={status} 
+                        placeholder='Current Status'
                         onChange={(e) => setStatus(e.target.value.toUpperCase())} 
                     />
                 </div>
@@ -299,6 +325,8 @@ const NewTaskCreation = () => {
             </form>
             <PopupExample open={popupOpen} close={() => setPopupOpen(false)} />
         </div>
+        </div>
+        
     );
 };
 
