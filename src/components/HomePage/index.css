@@ -1,0 +1,31 @@
+.home-page{
+    height: 100vh;
+    background-color: brown;
+    padding-top: 0.1px;
+}
+.home-page-task-box{
+    height: 100px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.home-page-task-box-line{
+    display: flex;
+    justify-content: space-around;
+}
+.task-tracker-heading{
+ text-align: center;
+ color: blue;
+}
+.task-container{
+    background-color: green;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom:20px;
+    overflow-y: scroll;
+    height: 82vh;
+    
+}
+.task-container::-webkit-scrollbar{
+    display: none;
+}
