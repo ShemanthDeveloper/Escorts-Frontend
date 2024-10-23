@@ -1,91 +1,6 @@
-import './index.css'
-
-/*const NewTaskCreation=()=>{
-    return(
-        <div className="newTask-main-container">
-            <h1 className='newTask-heading'>New Task Creation</h1>
-            <form className='newTask-form-continer '>
-                 <div className='newTask-label-container'>
-                    <label className='label'>CODE</label>
-                    <input className='newTask-input' type="text"/>
-                 </div>
-                 <div className='newTask-label-container'>
-                    <label className='label'>Name</label>
-                    <input className='newTask-input' type="text"/>
-                 </div>
-                 <div className='newTask-label-container'>
-                    <label className='label'>Description</label>
-                    <input className='newTask-input' type="text"/>
-                 </div>
-                 <div className='newTask-check-box-container'>
-                 <div>
-                 <label className='label'>3D</label>
-                 <input className='newTask-check-box' type="checkbox"/>
-                 </div>
-                 <div className='newTask-2d'>
-                 <label className='label'>2D</label>
-                 <input className='newTask-check-box' type="checkbox"/>
-                 </div>
-                 </div>
-                 <div className='newTask-select-container'>
-                 <label className='label' for="options">Type Of Part:</label>
-    <select className='newTask-select-field'  id="options" name="options">
-    <option value="option4">REF</option>
-        <option value="option1">BOP</option>
-        <option value="option2">Phantom</option>
-    </select>
-                 </div>
-                 <div className='newTask-check-box-container'>
-                    <label className='label'>DR/DRR</label>
-                    <input className='newTask-check-box' type="checkbox"/>
-                    <span class='checkmark'></span>
-                 </div>
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 <div className='newTask-select-container'>
-                 <label className='label' for="options">Processs Type:</label>
-                  <select id="options" className='newTask-select-field' name="options">
-                 <option value="option4">WORKFLOW</option>
-                 <option value="option1">ECO</option>
-                <option value="option2">DR</option>
-                 <option value="option3">DRR</option>
-                  </select>
-                 </div>
-                 <div className='newTask-label-container'>
-                    <label className='label'>ECO</label>
-                    <input className='newTask-input' type='text'/>
-                 </div>
-                 <div className='newTask-label-container'>
-                    <label className='label'>Status</label>
-                    <input className='newTask-input' type='text'/>
-                 </div>
-                 <div className='newTask-submitButton'>
-                    <submit className="newTask-sButton">Save</submit>
-                 </div>
-            </form>
-        </div>
-    )
-    
-}
-
-export default NewTaskCreation
-
-/* git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/ShemanthDeveloper/Escorts-Frontend.git
-git push -u origin main*/
-
 
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
-import NavBar from '../NavBar'
 import 'reactjs-popup/dist/index.css'; 
 import './index.css';
 
@@ -197,9 +112,8 @@ const NewTaskCreation = () => {
    
       
         <div className="newTask-main-container">
-         <NavBar/>
          <div className='newTask-container-bg'>
-            <h1 className='newTask-heading'>New Task Creation</h1>
+         <h6 className='newTask-heading'>New Task Creation</h6>
             <form className='newTask-form-continer' onSubmit={handleSubmit}>
                 <div className='newTask-label-container'>
                     <label className='label'>CODE</label>

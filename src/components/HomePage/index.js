@@ -21,7 +21,6 @@ const data=[
 const HomePage=()=>{
     return(
         <div className="home-page">
-            <NavBar/>
             <div className="task-tracker-heading"> 
             <h2>Task Tracker</h2>
             </div>
@@ -50,3 +49,4 @@ const HomePage=()=>{
 }
 
 export default HomePage
+

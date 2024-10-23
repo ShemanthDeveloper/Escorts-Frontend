@@ -11,7 +11,7 @@ import "./index.css"
 
 function OffcanvasExample() {
   return (
-    <div >
+    <div className='navbar-container'>
       {[false].map((expand) => (
         <Navbar key={expand} expand={expand} className="nav-container  mb-3">
           <Container fluid>
@@ -29,8 +29,8 @@ function OffcanvasExample() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Work Flow</Nav.Link>
+                  <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link href="/NewTask">New Task Creation</Nav.Link>
                   <Nav.Link href="#action2">DR Process</Nav.Link>
                   <Nav.Link href="#action2">2D Update</Nav.Link>
                   <Nav.Link href="#action2">3D Update</Nav.Link>
